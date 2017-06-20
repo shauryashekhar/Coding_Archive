@@ -11,12 +11,14 @@ int nooffour(int a)
     if(rem==4)
     {
         result++;
+        goto y;
     }
     a=a/10;
     if(a>0)
     {
         goto x;
     }
+    y:
     return result;
 }
 
