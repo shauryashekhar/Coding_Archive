@@ -8,7 +8,7 @@ int main() {
     while(t--)
     {
         int c1,c2,c3;
-        c1=c2=c3=0;
+        c1=c2=c3=1;
         int n;
         cin>>n;
         int ar[n];
@@ -18,18 +18,19 @@ int main() {
         }
         int mid;
         mid=n/2;
-        if(ar[mid]==1)
-        {
-            c1=1;
-        }
-        else
+        if(ar[mid]!=1)
         {
             c1=0;
         }
         int diff;
         diff=ar[0]-ar[1];
         diff=abs(diff);
-        int flagsecond=0;
+        if(diff==0)
+        {
+            c2=0;
+        }
+        else
+        {
         for(int j=1;j<n-1;j++)
         {
             int res;
@@ -37,35 +38,24 @@ int main() {
             res=abs(res);
             if(res!=diff)
             {
-                flagsecond=1;
+                c2=0;
                 break;
             }
         }
-        if(flagsecond==0)
-        {
-            c2=1;
-        }
-        else
-        {
-            c2=0;
         }
         int flagthird=0;
-        for(int x=0, y=mid+1;x<mid,y<n;x++,y++)
-        {
+        int pos1,pos2;
+        for(int x=0,y=n-1;x<mid,y>mid;x++,y--)
+        {   
             if(ar[x]!=ar[y])
             {
-                flagthird=1;
+                pos1=x;
+                pos2=y;
+                c3=0;
                 break;
             }
         }
-        if(flagthird==0)
-        {
-            c3=1;
-        }
-        else
-        {
-            c3=0;
-        }
+        z:
         if(c1==1 && c2==1 && c3==1)
         {
             cout<<"Yes"<<endl;
