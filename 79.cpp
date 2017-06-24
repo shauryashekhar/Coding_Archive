@@ -11,20 +11,20 @@ void enqueue(int a)
 {
     struct node *temp=new node;
     temp->n=a;
+    temp->next=NULL;
     if(top==NULL)
     {
-        temp->next=NULL;
         top=temp;
     }
     else
     {
-        struct node *curr=top;
+        struct node *curr;
+        curr=top;
         while(curr->next!=NULL)
         {
             curr=curr->next;
         }
         curr->next=temp;
-        temp->next=NULL;
     }
 }
 
@@ -32,7 +32,7 @@ void dequeue()
 {
     if(top==NULL)
     {
-        cout<<"Queue is empty"<<endl;
+        cout<<"Stack is empty"<<endl;
     }
     else
     {
@@ -42,27 +42,34 @@ void dequeue()
 
 void display()
 {
-    struct node *curr=top;
-    
-    while(curr->next!=NULL)
+    if(top==NULL)
     {
-        cout<<curr->n<<"->";
-        curr=curr->next;
+        cout<<"Queue is empty"<<endl;
     }
-    cout<<curr->n;
-    cout<<endl;
+    else
+    {
+        struct node *curr;
+        curr=top;
+        while(curr->next!=NULL)
+        {
+            cout<<curr->n<<"<-";
+            curr=curr->next;
+        }
+        cout<<curr->n<<endl;
+    }
 }
 
 int main()
 {
-    int opt;
 x:
-    cout<<"Queue"<<endl;
+    cout<<"QUEUE"<<endl;
     cout<<"1. Enqueue"<<endl;
     cout<<"2. Dequeue"<<endl;
     cout<<"3. Display"<<endl;
+    cout<<"Enter option"<<endl;
+    int opt;
     cin>>opt;
-    switch(opt)
+    switch (opt)
     {
         case 1:
             int num;
@@ -77,5 +84,4 @@ x:
             display();
             goto x;
     }
-    return 0;
 }
